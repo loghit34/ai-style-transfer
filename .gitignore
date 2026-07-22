@@ -1,0 +1,37 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Python bytecode
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Large model weight files (too large for GitHub - 80MB+ each)
+NST_Code/vgg_normalised.pth
+NST_Code/experiment/final_exp/decoder_final.pth
+
+# Sample training output images (not needed for deployment)
+NST_Code/experiment/final_exp/sample_iter_*.png
+
+# Uploaded user images (dynamic, should not be in repo)
+NST_Code/static/uploads/
+
+# VS Code
+.vscode/
+
+# Training data (large folders, not needed)
+NST_Code/content_data/
+NST_Code/style_data/
+
+# Environment variables
+.env
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
