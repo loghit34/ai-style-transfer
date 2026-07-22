@@ -51,14 +51,20 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+if device.type == 'cpu':
+    torch.set_num_threads(2)
+
 def style_transfer(content_image, style_image, encoder, decoder, alpha, device):
+    # Use 256px on CPU for fast 2-second processing and low memory footprint on cloud servers
+    img_size = 512 if device.type == 'cuda' else 256
+
     content_transform = transforms.Compose([
-        transforms.Resize(512),
+        transforms.Resize(img_size),
         transforms.ToTensor()
     ])
 
     style_transform = transforms.Compose([
-        transforms.Resize(512),
+        transforms.Resize(img_size),
         transforms.ToTensor()
     ])
     content_image = content_transform(content_image).unsqueeze(0).to(device)
